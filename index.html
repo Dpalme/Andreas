@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREAS - Klaatu Suuns</title>
+    <link
+      href="https://dpalmer.in/Peoria/css/peoria-0-6-2.min.css"
+      rel="stylesheet"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+  </head>
+  <body class="overflow-h">
+    <div class="text-c fade" id="logos">
+      <h1>
+        <img src="./img/Andreas_Type.svg" alt="Andreas" />
+      </h1>
+      <div class="flex-row">
+        <img src="./img/Klaatu_Type.svg" alt="Klaatu Suuns" class="mr-lg" />
+        <img src="./img/Spack_Type.svg" alt="Speck Joliet" />
+      </div>
+    </div>
+
+    <div class="text-c center-a fade">
+      <a href="./" class="text-c">
+        <img src="./img/play_circle_filled.svg" alt="Play Icon" id="playIcon" />
+      </a>
+    </div>
+
+    <div v-scope id="vueComp">
+      <form
+        class="text-c absolute bottom center-x mb-lg fade"
+        id="formName"
+        @submit.prevent="strip.getPlant"
+      >
+        <label for="name" class="white h4">Gana una sorpresa</label>
+        <input type="text" placeholder="Tu Nombre" v-model="name" maxlength="18"/>
+      </form>
+
+      <div id="obiStrip" class="top left absolute">
+        <div class="text-c p-sm">
+            <!-- TODO add english -->
+          <a class="blue mr-md">EN</a>
+          <a class="blue active">ES</a>
+        </div>
+        <div id="obiInfo" class="relative">
+          <div class="text-c p-sm border-blue">
+            <h2 class="mb-n">{{ strip.name }}</h2>
+            <h3 class="mb-n">{{ strip.plant.name }}</h3>
+            <img
+              src="./img/ShareNetwork.svg"
+              alt="share"
+              height="24"
+              class="sharebtn icon"
+            />
+          </div>
+          <div class="p-sm border-blue">
+            <p class="justify mb-n">{{ strip.plant.info }}</p>
+          </div>
+          <img :src="strip.plant.img" :alt="strip.plant.name" width="360" />
+        </div>
+        <div class="text-c p-sm">
+            <p>
+                Comparte lo que te salió y participa para ganar un cassette de
+                PANORAMAS
+            </p>
+            <a target="_blank" class="button white blue-bg sharebtn">Compartir</a>
+        </div>
+        <div class="text-c p-sm border-blue">
+            Ve el video de ANDREAS
+        </div>
+        <a href="https://youtu.be">
+            <img src="" alt="" width="360">
+        </a>
+      </div>
+    </div>
+
+    <footer
+      class="absolute bottom right flex-row"
+      id="branding"
+      style="justify-items: center"
+    >
+      <a href="https://dpalmer.in">
+        <img src="./img/dpalmer_in.svg" alt="dpalmer.in" height="16" />
+      </a>
+      <img src="./img/x.svg" alt="x" height="16" />
+      <a href="https://superartificial.com.mx">
+        <img src="./img/SuperArt.svg" alt="Super Artificial" height="16" />
+      </a>
+    </footer>
+    <script src="js/md5.min.js"></script>
+    <script type="module">
+      import { createApp, reactive } from "https://unpkg.com/petite-vue?module";
+      import { plants } from "./infoEs.mjs";
+
+      const strip = reactive({
+        name: "",
+        plant: {
+          name: "Narciso",
+          info: "Lorem ipsum dolor sit amet. Nessun dorma principessa",
+          img: "./img/narciso.jpg",
+        },
+        getPlant(ev) {
+          this.name = ev.target[0].value;
+          if (this.name && this.name != "") {
+            document.getElementById("obiStrip").classList.add("open");
+            var hashStr = md5(name),
+              hash = 0;
+            for (var i = 0; i < md5.length; i++) {
+              hash += hashStr.charCodeAt(i);
+            }
+            this.plant = plants[hash % plants.length];
+          }
+        },
+      });
+
+      createApp({ strip }).mount("#vueComp");
+    </script>
+  </body>
+</html>

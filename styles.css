@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Karla:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+  --blue: #358ec8;
+  font-size: 14px;
+  --spacing: 8px;
+  --title: "Josefin Sans", sans-serif;
+  --default: "Karla", sans-serif;
+}
+
+::-moz-selection                { background: var(--blue);color:#fff     }
+::selection                     { background-color: var(--blue);;color:#fff}
+
+body {
+  background-color: #8baa76;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 65.62%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    url("img/phonex1080.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+body:focus-within {
+  background-image: linear-gradient(
+      180deg,
+      rgba(53, 142, 200, 0) 65.62%,
+      rgba(53, 142, 200, 0.4) 100%
+    ),
+    url("img/phonex1080.jpg");
+}
+
+input {
+  background: rgba(53, 142, 200, 0.4);
+  border-radius: 8px 8px 0px 0px;
+  font-size: 1.4rem;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 10px;
+  letter-spacing: 2px;
+  border-bottom: #fff 2px solid;
+  color: #fff;
+}
+
+input:focus,
+input:active {
+  background: #fff;
+  color: var(--blue);
+  border-bottom: var(--blue) 2px solid;
+}
+
+a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.border-blue {
+  border-top: var(--blue) solid 2px;
+}
+
+#obiStrip {
+  color: var(--blue);
+  background-color: #fff;
+  max-width: 360px;
+  height: 3rem;
+  overflow: hidden;
+  margin-left: calc(var(--spacing) * 2);
+  margin-right: calc(var(--spacing) * 2);
+  transition: height 1s;
+}
+
+#obiStrip.open {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#obiStrip a {
+  font-family: var(--title);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+#playIcon {
+  height: calc(var(--spacing) * 12);
+  transition: height 0.5s ease-in-out;
+}
+
+.sharebtn.icon {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#playIcon:hover {
+    height: calc(var(--spacing) * 14);
+}
+
+#logos {
+  margin-top: calc(var(--spacing) * 8);
+}
+
+#logos > h1 > img {
+  height: calc(var(--spacing) * 8);
+}
+
+#logos > div > img {
+  height: calc(var(--spacing) * 4);
+}
+
+#branding {
+  position: fixed;
+  margin: calc(var(--spacing) * 1);
+}
+
+.h4 {
+  font-weight: 400;
+  font-family: var(--default);
+  font-size: 2.25rem;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #fff;
+}
+
+::-ms-input-placeholder {
+  color: #fff;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+h2, h3 {
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 100%;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 100%;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --spacing: 16px;
+  }
+
+  #logos {
+    margin-top: calc(var(--spacing) * 4);
+  }
+
+  #obiStrip {
+    margin-left: calc(var(--spacing) * 2);
+  }
+
+  body {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 65.62%,
+        rgba(0, 0, 0, 0.4) 100%
+      ),
+      url("img/tabletx675.jpg");
+  }
+
+  body:focus-within {
+    background-image: linear-gradient(
+        180deg,
+        rgba(53, 142, 200, 0) 65.62%,
+        rgba(53, 142, 200, 0.4) 100%
+      ),
+      url("img/tabletx675.jpg");
+  }
+}
+@media (min-width: 1013px) {
+  :root {
+    font-size: 16px;
+  }
+
+  body {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 65.62%,
+        rgba(0, 0, 0, 0.4) 100%
+      ),
+      url("img/Desktopx1080.jpg");
+  }
+
+  body:focus-within {
+    background-image: linear-gradient(
+        180deg,
+        rgba(53, 142, 200, 0) 65.62%,
+        rgba(53, 142, 200, 0.4) 100%
+      ),
+      url("img/Desktopx1080.jpg");
+  }
+}
