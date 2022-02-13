@@ -94,7 +94,7 @@ a.active {
     display: block;
     position: absolute;
     right: 1rem;
-    top: 50%;
+    top: 25%;
     transform: translateY(-50%);
     cursor: pointer;
 }

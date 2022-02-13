@@ -42,7 +42,7 @@
           type="text"
           :placeholder="i18b[i18b.lang].placeholder"
           v-model="name"
-          maxlength="18"
+          maxlength="15"
         />
       </form>
 
@@ -72,10 +72,11 @@
             width="360"
           />
           <div class="text-c p-sm">
-            <h3>Tu canción</h3>
+            <h3>{{ i18b[i18b.lang].songTitle }}</h3>
             <a
               :href="strip.plant.song.url"
               class="d-block button white blue-bg m-n"
+              target="_blank"
             >
               {{ strip.plant.song.name }}
             </a>
@@ -149,23 +150,16 @@
           }
         },
         share(ev) {
-          if (navigator.share) {
-            navigator
-              .share({
-                title: this.plant[i18b.lang].name,
-                text: this.plant[i18b.lang].name,
-                url: window.location.href,
-                img: this.plant.img.src
-              })
-              .then(() => {
-                console.log("Thanks for sharing!");
-              })
-              .catch((err) => {
-                console.log(`Couldn't share because of`, err.message);
-              });
-          } else {
-            window.open(`https://twitter.com/intent/tweet?url=http%3A%2F%2F192.168.68.125%3A5500&text=A%20m%ED%20me%20toc%F3%20${this.plant.es.name}%2C%20t%FA%20qu%E9%20eres%3F`, '_blank');
-          }
+            try{
+                const data = {
+                    title: this.plant[i18b.lang].name,
+                    text: this.plant[i18b.lang].name,
+                    url: window.location.href
+                  }
+                navigator.share(data)
+            } catch (ex) {
+                window.open(`https://twitter.com/intent/tweet?url=https%3A%2F%2Fdpalmer.in%2FAndreas%3A5500&text=A%20m%ED%20me%20toc%F3%20${this.plant.es.name}%2C%20t%FA%20qu%E9%20eres%3F`, '_blank');
+            }
         },
       });
 
@@ -178,6 +172,7 @@
             "Comparte lo que te salió y participa para ganar un cassette de PANORAMAS",
           shareCTA: "Compartir",
           viewCTA: "Ve el video de ANDREAS",
+          songTitle: "Tu canción"
         },
         en: {
           formLabel: "Win a surprise",
@@ -186,6 +181,7 @@
             "Share what you got for a chance to win a PANORAMAS cassette",
           shareCTA: "Share",
           viewCTA: "Watch the ANDREAS video",
+          songTitle: "Your Song"
         },
         switchEn() {
           this.lang = "en";
