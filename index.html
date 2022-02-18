@@ -198,16 +198,16 @@
         share(ev) {
           try {
             if (i18b.lang == "es") {
-              this.title = `A mí me tocó ${this.plant[i18b.lang].name}, ¿a ti? #ANDREASMV #KlaatuSuuns`;
+              this.title = `A mí me tocó ${this.plant[i18b.lang].name}, ¿a ti? #ANDREASMV #KlaatuSuuns\n`;
             } else {
               this.title = `I got ${
                 this.plant[i18b.lang].name
-              }, what did you get? #ANDREASMV #KlaatuSuuns`;
+              }, what did you get? #ANDREASMV #KlaatuSuuns\n`;
             }
+            this.title += window.location.href
             const data = {
               title: this.title,
-              text: this.text,
-              url: window.location.href,
+              text: this.text
             };
             navigator.share(data);
           } catch (ex) {
