@@ -60,7 +60,11 @@
     </div>
 
     <div class="text-c center-a fade">
-      <a href="https://www.youtube.com/watch?v=QnyxhXzLZs8" class="text-c" target="_blank">
+      <a
+        href="https://www.youtube.com/watch?v=QnyxhXzLZs8"
+        class="text-c"
+        target="_blank"
+      >
         <img src="./img/play_circle_filled.svg" alt="Play Icon" id="playIcon" />
       </a>
     </div>
@@ -125,11 +129,14 @@
           <a
             target="_blank"
             class="d-block button white blue-bg m-n"
-            :href="strip.tweet"
+            @click="strip.share"
             >{{ i18b[i18b.lang].shareCTA }}
           </a>
         </div>
-        <a href="https://www.youtube.com/watch?v=QnyxhXzLZs8" class="d-block m-n">
+        <a
+          href="https://www.youtube.com/watch?v=QnyxhXzLZs8"
+          class="d-block m-n"
+        >
           <img src="./img/tabletx675.jpg" alt="" width="360" />
         </a>
       </div>
@@ -150,92 +157,103 @@
     </footer>
     <script src="js/md5.min.js"></script>
     <script type="module">
-        import { createApp, reactive } from "https://unpkg.com/petite-vue?module";
-        import { plants } from "./js/output.js";
+      import { createApp, reactive } from "https://unpkg.com/petite-vue?module";
+      import { plants } from "./js/output.js";
 
-        const strip = reactive({
-          plant: {
-            es: {
-              name: "Nombre español",
-              info: "Info español",
-            },
-            en: {
-              name: "Nombre inglés",
-              info: "Info inglés ",
-            },
-            song: {
-              name: "Canción ",
-              url: "Canción ",
-            },
-            img: {
-              src: "./img/plants/narciso.jpeg",
-            },
-          },
-          tweet: "",
-          getPlant(ev) {
-            this.name = ev.target[0].value;
-            if (this.name && this.name != "") {
-              document.getElementById("obiStrip").classList.add("open");
-              var hashStr = md5(name.toLowerCase()),
-                hash = 0;
-              for (var i = 0; i < md5.length; i++) {
-                hash += hashStr.charCodeAt(i);
-              }
-              const keys = Object.keys(plants);
-              this.plant = plants[keys[hash % keys.length]];
-            }
-            
-            this.tweet = 'https://twitter.com/intent/tweet?text=';
-            if (i18b.lang == "es") {
-              this.tweet += encodeURIComponent(`A mí me tocó ${this.plant[i18b.lang].name}, ¿a ti?\n\n#ANDREASMV #KlaatuSuuns\n`);
-            } else {
-              this.tweet += encodeURIComponent(`I got ${
-                this.plant[i18b.lang].name
-              }, what did you get?\n\n#ANDREASMV #KlaatuSuuns\n`);
-            }
-            this.tweet += "&url=" + encodeURIComponent('https://dpalmer.in/Andreas')
-          }
-        });
-
-        const i18b = reactive({
-          lang: "es",
+      const strip = reactive({
+        plant: {
           es: {
-            formLabel: "Gana una sorpresa",
-            placeholder: "Tu Nombre",
-            shareText:
-              "Comparte lo que te salió y participa para ganar un cassette de PANORAMAS",
-            shareCTA: "Tweet",
-            viewCTA: "Ve el video de ANDREAS",
-            songTitle: "Tu canción",
+            name: "Nombre español",
+            info: "Info español",
           },
           en: {
-            formLabel: "Win a surprise",
-            placeholder: "Your Name",
-            shareText:
-              "Share what you got for a chance to win a PANORAMAS cassette",
-            shareCTA: "Tweet",
-            viewCTA: "Watch the ANDREAS video",
-            songTitle: "Your Song",
+            name: "Nombre inglés",
+            info: "Info inglés ",
           },
-          switchEn() {
-            this.lang = "en";
-            document.querySelector(".en-switch").classList.add("active");
-            document.querySelector(".es-switch").classList.remove("active");
+          song: {
+            name: "Canción ",
+            url: "Canción ",
           },
-          switchEs() {
-            this.lang = "es";
-            document.querySelector(".en-switch").classList.remove("active");
-            document.querySelector(".es-switch").classList.add("active");
+          img: {
+            src: "./img/plants/narciso.jpeg",
           },
-        });
+        },
+        tweet: "",
+        getPlant(ev) {
+          this.name = ev.target[0].value;
+          if (this.name && this.name != "") {
+            document.getElementById("obiStrip").classList.add("open");
+            var hashStr = md5(name.toLowerCase()),
+              hash = 0;
+            for (var i = 0; i < md5.length; i++) {
+              hash += hashStr.charCodeAt(i);
+            }
+            const keys = Object.keys(plants);
+            this.plant = plants[keys[hash % keys.length]];
+          }
 
-        createApp({ i18b, strip }).mount("#body");
-
-        if ("es" in window.navigator.languages) {
-          i18b.switchEs();
-        } else {
-          i18b.switchEn();
+          this.tweet = "https://twitter.com/intent/tweet?text=";
+          if (i18b.lang == "es") {
+            this.tweet += encodeURIComponent(
+              `A mí me tocó ${
+                this.plant[i18b.lang].name
+              }, ¿a ti?\n\n#ANDREASMV #KlaatuSuuns\n`
+            );
+          } else {
+            this.tweet += encodeURIComponent(
+              `I got ${
+                this.plant[i18b.lang].name
+              }, what did you get?\n\n#ANDREASMV #KlaatuSuuns\n`
+            );
+          }
+          this.tweet +=
+            "&url=" + encodeURIComponent("https://dpalmer.in/Andreas");
+        },
+        share(ev) {
+          ev.preventDefault()
+          window.open(this.tweet);
         }
+      });
+
+      const i18b = reactive({
+        lang: "es",
+        es: {
+          formLabel: "Gana una sorpresa",
+          placeholder: "Tu Nombre",
+          shareText:
+            "Comparte lo que te salió y participa para ganar un cassette de PANORAMAS",
+          shareCTA: "Tweet",
+          viewCTA: "Ve el video de ANDREAS",
+          songTitle: "Tu canción",
+        },
+        en: {
+          formLabel: "Win a surprise",
+          placeholder: "Your Name",
+          shareText:
+            "Share what you got for a chance to win a PANORAMAS cassette",
+          shareCTA: "Tweet",
+          viewCTA: "Watch the ANDREAS video",
+          songTitle: "Your Song",
+        },
+        switchEn() {
+          this.lang = "en";
+          document.querySelector(".en-switch").classList.add("active");
+          document.querySelector(".es-switch").classList.remove("active");
+        },
+        switchEs() {
+          this.lang = "es";
+          document.querySelector(".en-switch").classList.remove("active");
+          document.querySelector(".es-switch").classList.add("active");
+        },
+      });
+
+      createApp({ i18b, strip }).mount("#body");
+
+      if ("es" in window.navigator.languages) {
+        i18b.switchEs();
+      } else {
+        i18b.switchEn();
+      }
     </script>
   </body>
 </html>
