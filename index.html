@@ -124,12 +124,12 @@
             </a>
           </div>
         </div>
-        <div class="text-c p-sm border-blue">
+        <div class="text-c p-sm border-blue mobile-show">
           <p class="mb-sm">{{ i18b[i18b.lang].shareText }}</p>
           <a
             target="_blank"
             class="d-block button white blue-bg m-n"
-            @click="strip.share"
+            href="instagram://story-camera"
             >{{ i18b[i18b.lang].shareCTA }}
           </a>
         </div>
@@ -183,7 +183,7 @@
           this.name = ev.target[0].value;
           if (this.name && this.name != "") {
             document.getElementById("obiStrip").classList.add("open");
-            var hashStr = md5(name.toLowerCase()),
+            var hashStr = md5(this.name.toLowerCase()),
               hash = 0;
             for (var i = 0; i < md5.length; i++) {
               hash += hashStr.charCodeAt(i);
@@ -191,27 +191,6 @@
             const keys = Object.keys(plants);
             this.plant = plants[keys[hash % keys.length]];
           }
-
-          this.tweet = "https://twitter.com/intent/tweet?text=";
-          if (i18b.lang == "es") {
-            this.tweet += encodeURIComponent(
-              `A mí me tocó ${
-                this.plant[i18b.lang].name
-              }, ¿a ti?\n\n#ANDREASMV #KlaatuSuuns\n`
-            );
-          } else {
-            this.tweet += encodeURIComponent(
-              `I got ${
-                this.plant[i18b.lang].name
-              }, what did you get?\n\n#ANDREASMV #KlaatuSuuns\n`
-            );
-          }
-          this.tweet +=
-            "&url=" + encodeURIComponent("https://dpalmer.in/Andreas");
-        },
-        share(ev) {
-          ev.preventDefault()
-          window.open(this.tweet);
         }
       });
 
@@ -221,8 +200,8 @@
           formLabel: "Gana una sorpresa",
           placeholder: "Tu Nombre",
           shareText:
-            "Comparte lo que te salió y participa para ganar un cassette de PANORAMAS",
-          shareCTA: "Tweet",
+            "Comparte un ss de lo que te salió en tu historia de ig y participa para ganar un cassette de PANORAMAS",
+          shareCTA: "Compartir",
           viewCTA: "Ve el video de ANDREAS",
           songTitle: "Tu canción",
         },
@@ -230,8 +209,8 @@
           formLabel: "Win a surprise",
           placeholder: "Your Name",
           shareText:
-            "Share what you got for a chance to win a PANORAMAS cassette",
-          shareCTA: "Tweet",
+            "Share a screenshot of what you got on your instagram story for a chance to win a PANORAMAS' cassette",
+          shareCTA: "Share",
           viewCTA: "Watch the ANDREAS video",
           songTitle: "Your Song",
         },

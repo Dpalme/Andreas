@@ -15,6 +15,22 @@ export let plants = {
         img: {
             src: "./img/plants/narciso.jpeg"
         }
+    }, monstera_albo_variegata: {
+        es: {
+            name: "Monstera Albo Variegata",
+                info: "Es una planta todoterreno que resulta muy fácil de cuidar y de mantener, ya que tolera un rango de situaciones de iluminación bastante amplia. Esta es la planta favorita de Carlo (Klaatu Suuns)."
+        },
+        en: {
+            name: "Monstera Albo Variegata",
+                info: "It is an all-terrain plant that is very easy to care for and maintain, as it tolerates a fairly wide range of lighting situations. This is Carlo's (Klaatu Suuns) favorite plant."
+        },
+        song: {
+            name: "Margaritas Podridas - Wow",
+                url: "https://www.youtube.com/watch?v=7smEC_HZbhw"
+        },
+        img: {
+            src: "./img/plants/monstera.jpeg"
+        }
     }, ipomoea_violacea: {
         es: {
             name: "Ipomoea violacea",
@@ -398,22 +414,6 @@ export let plants = {
     },
     img: {
         src: "./img/plants/suculenta.jpeg"
-    }
-}, monstera_albo_variegata: {
-    es: {
-        name: "Monstera Albo Variegata",
-            info: "Es una planta todoterreno que resulta muy fácil de cuidar y de mantener, ya que tolera un rango de situaciones de iluminación bastante amplia. Esta es la planta favorita de Carlo (Klaatu Suuns)."
-    },
-    en: {
-        name: "Monstera Albo Variegata",
-            info: "It is an all-terrain plant that is very easy to care for and maintain, as it tolerates a fairly wide range of lighting situations. This is Carlo's (Klaatu Suuns) favorite plant."
-    },
-    song: {
-        name: "Margaritas Podridas - Wow",
-            url: "https://www.youtube.com/watch?v=7smEC_HZbhw"
-    },
-    img: {
-        src: "./img/plants/monstera.jpeg"
     }
 },
 }

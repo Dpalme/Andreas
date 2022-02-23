@@ -144,6 +144,10 @@ p {
     font-size: 1rem;
 }
 
+.mobile-show {
+  display: block;
+}
+
 h2, h3 {
     letter-spacing: 2px;
 }
@@ -194,6 +198,10 @@ h3 {
 @media (min-width: 1013px) {
   :root {
     font-size: 16px;
+  }
+
+  .mobile-show {
+    display: none;
   }
 
   body {
